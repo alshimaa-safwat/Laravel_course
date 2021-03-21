@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StorePostRequest;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\User;
+use \Cviebrock\EloquentSluggable\Services\SlugService;
+
 
 class PostController extends Controller
 {
@@ -28,7 +31,7 @@ class PostController extends Controller
         ]);
     }
 
-    public function store(Request $myrequest){
+    public function store(StorePostRequest $myrequest){
        $data=$myrequest->all();
        Post::create($data);
        return redirect()->route('posts.index'); 
